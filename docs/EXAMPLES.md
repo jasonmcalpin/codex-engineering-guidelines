@@ -25,3 +25,18 @@ These examples describe desired outcomes, not prescribed implementations.
 **Constraints:** Keep serialization, recovery, failure handling, and caller-visible API invariant.
 
 **Evidence:** Characterization tests before/after, diff review, and targeted integration verification.
+
+## Verify a persistence consistency fix
+
+**Goal:** Confirm a recovery operation persists a complete next-state snapshot and only publishes it to the application after successful persistence.
+
+**Constraints:** The repository contract must say whether a rejected save leaves the old durable state intact. Current adapter behavior alone is insufficient evidence for all future implementations.
+
+**Evidence:**
+- A regression that demonstrably fails against the old split-write behavior.
+- Successful save: the published state matches the durable snapshot.
+- Rejected save: the old durable state and in-memory progression remain unchanged; pending-operation state resets. Where a backend can partially commit or return an ambiguous result, explicitly test or document its handling.
+- Fresh application/repository initialization: serialization, schema validation, reconciliation, and hydration preserve recovery costs, accepted keys, progression, and assessment status.
+- A test run whose overall status is reported truthfully even if unrelated tests or environment prerequisites fail.
+
+**Review outcome:** Distinguish a production defect from a missing negative-path test, undocumented repository guarantee, or unverified reload path.
