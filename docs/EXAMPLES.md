@@ -26,6 +26,18 @@ These examples describe desired outcomes, not prescribed implementations.
 
 **Evidence:** Characterization tests before/after, diff review, and targeted integration verification.
 
+## Extend a feature that outgrew its original component
+
+**Goal:** Extend a simple local form to support asynchronous validation, persistent drafts, and undo.
+
+**Fitness decision:** Inspect whether the existing component still coherently owns all these responsibilities. If UI presentation, persistence policy, and async orchestration are accumulating together, identify where those concerns belong under the repository's current architecture. Do not introduce a framework merely because more state was added.
+
+**Preserved contract:** Existing field behavior, validation messages, draft compatibility, accessibility, and error semantics remain stable unless explicitly changed.
+
+**Intentional new behavior:** Asynchronous validation, saved drafts, and undo are specified and tested separately from the structural extraction.
+
+**Evidence:** Existing behavior characterization; targeted contract and integration tests; save/reload and failure-path tests; an inspectable diff distinguishing structural moves from new behavior. If the original structure still fits, implement the feature without restructuring and document the reason.
+
 ## Verify a persistence consistency fix
 
 **Goal:** Confirm a recovery operation persists a complete next-state snapshot and only publishes it to the application after successful persistence.
