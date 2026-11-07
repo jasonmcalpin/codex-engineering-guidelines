@@ -7,7 +7,7 @@ Inspired by [Karpathy-Inspired Claude Code Guidelines](https://github.com/multic
 ## Principles
 
 1. **Establish intent:** identify contracts, boundaries, assumptions, and architectural decisions before modifying a system.
-2. **Preserve conceptual integrity:** choose the simplest maintainable architecture satisfying real requirements, not necessarily the fewest lines.
+2. **Preserve conceptual integrity:** choose the simplest maintainable architecture satisfying real requirements, and reassess its fitness when feature responsibilities expand.
 3. **Control scope and dependencies:** avoid unrelated changes while updating every necessary consumer of a changed contract.
 4. **Deliver verifiable outcomes:** state acceptance criteria, run relevant checks, and distinguish proven results from unverified claims.
 
@@ -44,7 +44,7 @@ Read [installation instructions](docs/INSTALLATION.md) for Windows and Unix path
 | `architecture-review` | A design decision or change crosses architectural boundaries |
 | `regression-fix` | Existing behavior regressed and needs diagnosis and recurrence protection |
 | `change-verification` | A substantial change or PR needs contract and acceptance checks |
-| `refactoring` | Structure must change while observable behavior stays stable |
+| `refactoring` | Review architectural fitness during substantial feature extensions, or perform standalone behavior-preserving restructuring |
 
 Skills are optional, task-specific guidance. They do not replace project architecture, domain constraints, or human review.
 

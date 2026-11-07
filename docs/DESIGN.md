@@ -17,6 +17,12 @@ This adaptation is inspired by the four principles in [multica-ai/andrej-karpath
 
 A fifth emphasis—respecting established architectural decisions—reduces silent model-driven design drift.
 
+## Architectural fitness during feature evolution
+
+A first implementation can be intentionally simple and correct for its original requirements. As responsibilities accumulate, that structure can stop matching the feature. For substantial extensions, the always-on guidance requires a proportional fitness assessment; the `refactoring` skill supplies the detailed procedure when real structural pressure exists.
+
+The decision is **not** automatically to refactor: retain the current structure when it still fits. When it does not, integrate bounded, behavior-preserving restructuring into feature work, keeping intentional new behavior separately specified and verified. This preserves the distinction between structural refactoring and wider feature delivery or optimization.
+
 ## Non-goals
 
 - Enforcing security boundaries, permissions, or CI policy.
