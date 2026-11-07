@@ -15,6 +15,13 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Avoid speculative abstractions, features, flexibility, and configuration without a concrete need.
 - When existing complexity is accidental, propose an intentional improvement rather than silently expanding scope.
 
+## Reassess architecture when extending features
+- Before materially expanding an existing feature, evaluate whether its current responsibilities, abstractions, ownership boundaries, and dependencies still fit the new requirements.
+- Look for concrete change pressure: accumulating unrelated responsibilities, duplicated logic, tangled dependencies, proliferating special cases, or incompatible persistence/consistency needs.
+- If the current design remains coherent, extend it without ceremony. If it does not, include a bounded structural change in the feature work rather than stacking new behavior onto a mismatched abstraction.
+- Separate behavior-preserving restructuring from intentionally changed behavior in the plan, review, and tests. Respect existing contracts unless the task explicitly authorizes a change.
+- Do not refactor merely because a feature was initially simple or might grow someday.
+
 ## Control scope while preserving dependencies
 - Every changed artifact must trace to the goal or a necessary dependency.
 - Avoid opportunistic cleanup, unrelated refactors, and wholesale formatting.
