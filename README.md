@@ -60,4 +60,4 @@ Changes should explain which coding-agent failure mode they address and how impr
 
 ## License
 
-A license for this new repository has not yet been selected. Review and add a license before encouraging broad external reuse.
+Licensed under the [MIT License](LICENSE). You may use, modify, and redistribute the material under its terms.
