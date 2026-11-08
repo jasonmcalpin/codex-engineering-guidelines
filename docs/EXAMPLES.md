@@ -52,3 +52,15 @@ These examples describe desired outcomes, not prescribed implementations.
 - A test run whose overall status is reported truthfully even if unrelated tests or environment prerequisites fail.
 
 **Review outcome:** Distinguish a production defect from a missing negative-path test, undocumented repository guarantee, or unverified reload path.
+
+## Requirements review: missing runtime registration
+
+**Goal:** Add a new set of MCP tools to an existing service.
+
+**Potential omission:** Tool implementation does not imply deployment registration, authorization, or discoverability. Verify the intended runtime catalog and policy boundaries without creating an unrelated approval workflow.
+
+**Evidence:** Compare the declared catalog to authenticated runtime discovery after deployment; test both authorized and denied invocations.
+
+**Negative control:** A routine private variable rename should not trigger a substantial requirements review. A complete request should produce no invented requirements.
+
+See [cross-project acceptance cases](REQUIREMENTS_REVIEW_CASES.md) for retrospective Taro, AI Gateway, AI Gateway Proxy, and Code Gauntlet scenarios and evaluation criteria.
