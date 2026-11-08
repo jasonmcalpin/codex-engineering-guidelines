@@ -2,7 +2,7 @@
 
 These cases are drawn from engineering work across Taro, AI Gateway, AI Gateway Proxy, and Code Gauntlet. They are **retrospective scenarios**, not proof that the new skill would have prevented the incidents. Prompts are reconstructed to isolate decision points; they are not claimed to be verbatim historical prompts. The observations are known from project discussions and deployment diagnostics, not from an independent audit of each repository.
 
-Use each case as an evaluation prompt **before revealing the omission and expected findings**. Check whether the agent identifies a consequential requirement, names its owner and failure mode, proposes observable acceptance evidence, and avoids speculative scope expansion.
+Use each case as an evaluation prompt **before revealing the omission and expected findings**. Check whether the agent identifies a consequential requirement, names its owner and failure mode, proposes observable acceptance evidence, and avoids speculative scope expansion. It must first check existing authoritative contracts: **missing**, **existing but unverified**, **already satisfied**, and **unknown** are distinct coverage states. Only remaining actions receive required/recommended/optional priority.
 
 ## Case A — Taro MCP: feature implemented but absent at runtime
 
@@ -89,6 +89,18 @@ Use each case as an evaluation prompt **before revealing the omission and expect
 
 **Expected result:** Verify assumptions against the repository, then report no material omissions if supported. Do not invent another gateway, role, configuration flag, or approval step.
 
+## Control H — existing contract, missing runtime evidence
+
+**Prompt to evaluate:** "The MCP host already has a documented tool catalog and authenticated registration contract. Review whether exposing a new history tool is sufficiently specified; the deployed runtime has not yet been checked."
+
+**Expected result:** If the catalog and registration contract are found, classify the registration requirement as **existing but unverified**, not missing. Recommend authenticated runtime discovery and comparison to the declared catalog; do not request a second catalog or new registration design. If the host repository is inaccessible, classify coverage as **unknown** and identify the necessary lookup.
+
+## Control I — existing contract and verified runtime
+
+**Prompt to evaluate:** "Review the registration requirements for a tool already declared in the authoritative catalog and verified by authenticated discovery in the running release."
+
+**Expected result:** If the cited contract and runtime evidence support the claim, classify registration as **already satisfied**, not a required addition. Continue checking only genuinely uncovered requirements. Do not equate a user's assertion of verification with independent evidence.
+
 ## Evaluation record
 
-For each case record: Codex version/date; whether `requirements-review` was explicitly invoked or naturally selected; installed guidance/skill paths; relevant project context provided; omissions identified; required/recommended/optional classification; false positives; and verification evidence. Mark outcomes **observed**, **unverified**, or **blocked**. Do not infer automatic skill invocation from a well-written answer.
+For each case record: Codex version/date; whether `requirements-review` was explicitly invoked or naturally selected; installed guidance/skill paths; relevant project context provided; omissions identified; coverage status and required/recommended/optional priority for remaining actions; duplicate-contract requests; false positives; and verification evidence. Mark outcomes **observed**, **unverified**, or **blocked**. Do not infer automatic skill invocation from a well-written answer.
