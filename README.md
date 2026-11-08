@@ -19,6 +19,7 @@ These are instructions to the coding agent, not an enforcement mechanism.
 AGENTS.md
 .agents/skills/
   architecture-review/SKILL.md
+  requirements-review/SKILL.md
   regression-fix/SKILL.md
   change-verification/SKILL.md
   refactoring/SKILL.md
@@ -41,6 +42,7 @@ Read [installation instructions](docs/INSTALLATION.md) for Windows and Unix path
 
 | Workflow | When to use |
 | --- | --- |
+| `requirements-review` | A substantial request may omit requirements essential to its intended outcome |
 | `architecture-review` | A design decision or change crosses architectural boundaries |
 | `regression-fix` | Existing behavior regressed and needs diagnosis and recurrence protection |
 | `change-verification` | A substantial change or PR needs contract and acceptance checks |
