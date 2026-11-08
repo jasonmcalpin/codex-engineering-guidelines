@@ -52,7 +52,7 @@ Skills are optional, task-specific guidance. They do not replace project archite
 
 ## Design and provenance
 
-See [design rationale](docs/DESIGN.md), [task examples](docs/EXAMPLES.md), and [attribution](ATTRIBUTION.md).
+See [design rationale](docs/DESIGN.md), [task examples](docs/EXAMPLES.md), [requirements-review acceptance cases](docs/REQUIREMENTS_REVIEW_CASES.md), and [attribution](ATTRIBUTION.md).
 
 Key departure from the original inspiration: this project explicitly prioritizes maintainable system architecture and dependency-aware contract changes over strictly minimizing changed lines or code size.
 
