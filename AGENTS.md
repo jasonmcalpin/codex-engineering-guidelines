@@ -27,6 +27,7 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Avoid opportunistic cleanup, unrelated refactors, and wholesale formatting.
 - When changing an interface, schema, invariant, or behavior, examine callers, persisted data, tests, documentation, and migration implications. Necessary dependent changes are in scope.
 - Treat operational prerequisites as change dependencies: inspect environment variables, feature flags, service configuration, permissions, credentials, infrastructure, authorization, and runtime registration. Classify new requirements as automatically provisioned, operator-configured, or intentionally optional; make missing required prerequisites fail visibly rather than silently disabling intended behavior.
+- Own temporary resource lifecycles: files, directories, locks, processes, sockets, and staging artifacts need an explicit owner and cleanup path. Release ephemeral resources after normal and recoverable failure paths; define safe recovery for crash-surviving coordination state. Repeated operations must not accumulate unbounded temporary state, and cleanup must not erase durable data or active locks.
 - Remove code made obsolete by your change; report unrelated pre-existing issues separately.
 - Never silently break observable behavior or compatibility.
 
