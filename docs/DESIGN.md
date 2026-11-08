@@ -17,6 +17,10 @@ This adaptation is inspired by the four principles in [multica-ai/andrej-karpath
 
 A fifth emphasis—respecting established architectural decisions—reduces silent model-driven design drift.
 
+## Requirements completeness before design
+
+The `requirements-review` skill checks whether a substantial request omits conditions necessary to achieve its intended destination. It classifies findings as required, recommended, or optional, and does not authorize unrequested scope expansion. This complements `architecture-review` (evaluating design choices), `regression-fix` (diagnosing failures), and `change-verification` (checking delivered behavior). It is not a mandatory gate for routine changes.
+
 ## Architectural fitness during feature evolution
 
 A first implementation can be intentionally simple and correct for its original requirements. As responsibilities accumulate, that structure can stop matching the feature. For substantial extensions, the always-on guidance requires a proportional fitness assessment; the `refactoring` skill supplies the detailed procedure when real structural pressure exists.
