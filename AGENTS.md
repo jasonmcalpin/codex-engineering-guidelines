@@ -8,6 +8,7 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Separate facts from assumptions and unresolved decisions. Never silently choose between materially different interpretations.
 - Ask only when ambiguity materially changes the result and cannot be resolved from existing context. Otherwise state the assumption and proceed.
 - Explain tradeoffs and challenge a proposed approach that violates an established constraint.
+- For substantial requests, look for consequential omissions needed to reach the stated outcome; distinguish required dependencies from recommended improvements and optional ideas. Surface material gaps without silently expanding scope.
 
 ## Preserve conceptual integrity
 - Prefer the least complex design satisfying the system's lifetime and maintenance requirements, not the fewest lines of code.
