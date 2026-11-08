@@ -31,6 +31,8 @@ For Windows, use the corresponding paths beneath your home directory (for exampl
 1. Start a new Codex session in a sample repository.
 2. Ask which repository guidance applies, and request an architecture review or regression fix using a corresponding skill.
 3. Confirm the agent can find the skill and identifies acceptance criteria and verification evidence.
-4. Inspect an actual code diff; instructions influence behavior but cannot guarantee compliance.
+4. For `requirements-review`, run a representative substantial request with explicit skill invocation, then try the same request without naming the skill in a fresh session. Record whether it was discovered and selected; do not assume automatic invocation from the response alone.
+5. Run the positive and negative controls in [requirements-review acceptance cases](REQUIREMENTS_REVIEW_CASES.md), withholding the expected findings until after the response. Record missing requirements, false positives, and whether required findings include observable acceptance criteria.
+6. Inspect an actual code diff; instructions influence behavior but cannot guarantee compliance.
 
 Consult [official Codex documentation](https://developers.openai.com/codex/) for evolving discovery and precedence rules.
