@@ -26,6 +26,7 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Every changed artifact must trace to the goal or a necessary dependency.
 - Avoid opportunistic cleanup, unrelated refactors, and wholesale formatting.
 - When changing an interface, schema, invariant, or behavior, examine callers, persisted data, tests, documentation, and migration implications. Necessary dependent changes are in scope.
+- Treat operational prerequisites as change dependencies: inspect environment variables, feature flags, service configuration, permissions, credentials, infrastructure, authorization, and runtime registration. Classify new requirements as automatically provisioned, operator-configured, or intentionally optional; make missing required prerequisites fail visibly rather than silently disabling intended behavior.
 - Remove code made obsolete by your change; report unrelated pre-existing issues separately.
 - Never silently break observable behavior or compatibility.
 
@@ -34,6 +35,7 @@ Use these defaults unless a more specific repository instruction or explicit use
 - When practical, reproduce bugs with a failing test before fixing them. Validate architecture through contract and integration evidence, not unit tests alone.
 - Run relevant checks and inspect outputs. Never claim verification that was not executed.
 - Report changed contracts, verification evidence, remaining risks, and blocked checks honestly.
+- For changes affecting deployed capabilities, distinguish successful builds and health checks from verified runtime availability. Reconcile the running capabilities against the declared release or service contract; do not claim operational completeness when required capabilities are absent.
 
 ## Scale the process
 - Keep trivial edits lightweight.
