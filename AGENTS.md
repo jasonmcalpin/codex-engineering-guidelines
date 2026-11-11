@@ -23,6 +23,14 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Separate behavior-preserving restructuring from intentionally changed behavior in the plan, review, and tests. Respect existing contracts unless the task explicitly authorizes a change.
 - Do not refactor merely because a feature was initially simple or might grow someday.
 
+## Organize code by responsibility
+- For every major revision, new feature, or substantial feature extension, inspect the affected directory and module structure before implementation and review its architectural integrity before completion.
+- Place new code, functions, components, tests, and assets according to cohesive feature/domain ownership and clear responsibilities. A generic source directory is a root, not a substitute for meaningful organization.
+- Avoid unrelated responsibilities in the same module, oversized files, duplicated logic, and new cross-boundary dependencies. Prefer existing coherent homes; introduce directories or modules when ownership and navigability justify them, not to satisfy arbitrary size thresholds.
+- Keep substantial structured content, catalogs, prompts, tool formats, and configuration in appropriate data/configuration files or persistence stores rather than embedding them in executable code; keep types, validation, and loading contracts in code.
+- Existing layout is evidence, not authority: preserve intentional conventions, but do not perpetuate accidental disorganization. Refactor only when justified by the change and keep restructuring bounded.
+- Before completion, confirm the affected architecture is at least as coherent and maintainable as before. State any necessary structural changes or deferred issues; do not claim automated enforcement where none exists.
+
 ## Control scope while preserving dependencies
 - Every changed artifact must trace to the goal or a necessary dependency.
 - Avoid opportunistic cleanup, unrelated refactors, and wholesale formatting.
