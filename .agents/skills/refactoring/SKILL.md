@@ -13,13 +13,13 @@ description: Assess architectural fitness and restructure existing code when mai
 ## Assess fitness against the destination
 1. Identify the new or existing capabilities and their lifecycle requirements. Read applicable project architecture, decisions, and code.
 2. Inspect current responsibility ownership, data flow, public interfaces, persistence, callers, dependencies, and tests.
-3. Check for evidence of structural pressure: multiple unrelated responsibilities, duplicated behavior, special-case proliferation, crossing ownership boundaries, dependency inversion, difficult extension points, or incompatible operational needs.
+3. Check for evidence of structural pressure: multiple unrelated responsibilities, duplicated behavior, special-case proliferation, crossing ownership boundaries, dependency inversion, difficult extension points, incompatible operational needs, or substantial independently editable data/configuration embedded in implementation code.
 4. Decide **retain**, **extend within existing boundaries**, or **refactor as part of the requested change**. Explain the actual pressure and the smallest coherent target architecture. Do not optimize for line count or hypothetical future requirements.
 
 ## Execute with explicit behavior boundaries
 5. Define a preservation contract for existing behavior: APIs, persisted formats and migrations, errors, performance constraints, and user-visible outcomes. For integrated work, separately enumerate the intentional new or changed behavior.
 6. Add characterization/contract coverage where existing invariants are exposed to risk. Where practical, distinguish mechanical restructuring from behavioral changes in commits or reviewable diff sections; coordinated changes can remain in one PR when necessary.
-7. Make only structural changes justified by the destination and its dependencies. Preserve external compatibility unless explicitly authorized; if behavior must change, document it as a contract change rather than calling it refactoring.
+7. Make only structural changes justified by the destination and its dependencies. Where substantial configuration, catalogs, templates, schemas, mappings, protocol definitions, or other independently editable data are embedded in code, move them behind an appropriate data/configuration boundary and keep code responsible for validation and interpretation. Preserve external compatibility unless explicitly authorized; if behavior must change, document it as a contract change rather than calling it refactoring.
 8. Verify old behavior, new capabilities (integrated mode), interfaces, migrations, and relevant performance metrics where applicable. Inspect the complete diff for accidental or unrelated changes.
 9. Report the structural decision, changed ownership or dependencies, intentional behavioral differences, verification evidence, and unresolved risk. If no refactor was warranted, say why.
 

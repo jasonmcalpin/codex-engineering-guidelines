@@ -17,6 +17,8 @@ This adaptation is inspired by the four principles in [multica-ai/andrej-karpath
 
 A fifth emphasis—respecting established architectural decisions—reduces silent model-driven design drift.
 
+A sixth emphasis is **data/code separation**. Long-lived systems are easier to evolve when executable behavior does not own substantial editable content. Configuration, catalogs, templates, protocol descriptions, mappings, fixtures, and similar material should live behind an explicit data boundary appropriate to the system, with code providing finite interpretation and validation. This also prevents "configuration by switch statement," where adding a new case requires editing implementation logic even though only data changed.
+
 ## Requirements completeness before design
 
 The `requirements-review` skill checks whether a substantial request omits conditions necessary to achieve its intended destination. It classifies findings as required, recommended, or optional, and does not authorize unrequested scope expansion. This complements `architecture-review` (evaluating design choices), `regression-fix` (diagnosing failures), and `change-verification` (checking delivered behavior). It is not a mandatory gate for routine changes.

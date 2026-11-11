@@ -16,6 +16,13 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Avoid speculative abstractions, features, flexibility, and configuration without a concrete need.
 - When existing complexity is accidental, propose an intentional improvement rather than silently expanding scope.
 
+## Keep data out of code
+- Treat code as executable behavior and data as separately owned content. Do not embed substantial configuration, catalogs, protocol descriptions, prompt/template bodies, schemas, mappings, fixtures, lookup tables, generated content, or other independently editable domain data directly in implementation files.
+- Store such material in the repository's appropriate data/config format, resource file, database, object store, or other persistence layer already chosen by the system. Code should load, validate, interpret, and operate on that data.
+- Small literals intrinsic to an algorithm are fine. The threshold is ownership and change cadence: if a non-algorithmic body of information could reasonably be edited, versioned, generated, migrated, or reviewed independently of the implementation, give it a data boundary.
+- Avoid replacing one hard-coded blob with a registry of hard-coded blobs. Prefer declarative structures with explicit schemas and finite interpreter primitives over model-, vendor-, or case-specific branches.
+- When data currently lives in code and the requested change materially extends or duplicates it, treat extraction to an appropriate data boundary as part of maintaining conceptual integrity, unless a documented constraint requires otherwise.
+
 ## Reassess architecture when extending features
 - Before materially expanding an existing feature, evaluate whether its current responsibilities, abstractions, ownership boundaries, and dependencies still fit the new requirements.
 - Look for concrete change pressure: accumulating unrelated responsibilities, duplicated logic, tangled dependencies, proliferating special cases, or incompatible persistence/consistency needs.
