@@ -12,15 +12,15 @@ description: Assess architectural fitness and restructure existing code when mai
 
 ## Assess fitness against the destination
 1. Identify the new or existing capabilities and their lifecycle requirements. Read applicable project architecture, decisions, and code.
-2. Inspect current responsibility ownership, data flow, public interfaces, persistence, callers, dependencies, and tests.
-3. Check for evidence of structural pressure: multiple unrelated responsibilities, duplicated behavior, special-case proliferation, crossing ownership boundaries, dependency inversion, difficult extension points, or incompatible operational needs.
+2. Inspect current responsibility ownership, directory/module layout, file and function cohesion, data flow, public interfaces, persistence, callers, dependencies, and tests. For major revisions, feature additions, and substantial extensions, this organization review is mandatory even if no refactoring results.
+3. Check file placement and navigability, including whether feature/domain boundaries are clear, shared modules are truly shared, and substantial data/configuration lives outside executable code. Check for evidence of structural pressure: multiple unrelated responsibilities, duplicated behavior, special-case proliferation, crossing ownership boundaries, dependency inversion, difficult extension points, or incompatible operational needs.
 4. Decide **retain**, **extend within existing boundaries**, or **refactor as part of the requested change**. Explain the actual pressure and the smallest coherent target architecture. Do not optimize for line count or hypothetical future requirements.
 
 ## Execute with explicit behavior boundaries
 5. Define a preservation contract for existing behavior: APIs, persisted formats and migrations, errors, performance constraints, and user-visible outcomes. For integrated work, separately enumerate the intentional new or changed behavior.
 6. Add characterization/contract coverage where existing invariants are exposed to risk. Where practical, distinguish mechanical restructuring from behavioral changes in commits or reviewable diff sections; coordinated changes can remain in one PR when necessary.
 7. Make only structural changes justified by the destination and its dependencies. Preserve external compatibility unless explicitly authorized; if behavior must change, document it as a contract change rather than calling it refactoring.
-8. Verify old behavior, new capabilities (integrated mode), interfaces, migrations, and relevant performance metrics where applicable. Inspect the complete diff for accidental or unrelated changes.
-9. Report the structural decision, changed ownership or dependencies, intentional behavioral differences, verification evidence, and unresolved risk. If no refactor was warranted, say why.
+8. Review the resulting file tree and changed modules for misplaced files, responsibility sprawl, unnecessary coupling, duplicated functions, and unjustified new directories. Verify old behavior, new capabilities (integrated mode), interfaces, migrations, and relevant performance metrics where applicable. Inspect the complete diff for accidental or unrelated changes.
+9. Report the organization review and structural decision (including why the existing layout was retained, if applicable), changed ownership or dependencies, intentional behavioral differences, verification evidence, and unresolved risk. If no refactor was warranted, say why.
 
 Do not equate modernization with replacing libraries or adding abstractions. A working feature can still require restructuring when its responsibilities change; an initially simple implementation does not automatically require it.
