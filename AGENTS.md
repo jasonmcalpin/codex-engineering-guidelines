@@ -16,6 +16,13 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Avoid speculative abstractions, features, flexibility, and configuration without a concrete need.
 - When existing complexity is accidental, propose an intentional improvement rather than silently expanding scope.
 
+## Design for adaptability, not permanence
+- Treat requirements and implementation decisions as revisable. Favor cohesive modules with explicit ownership and narrow contracts so changing one subsystem does not force unrelated changes.
+- Evaluate modularity by independence of decisions and replacement cost, not number of files, interfaces, or packages. Avoid consumers depending on another module's private details.
+- Where concrete variants repeatedly change core logic, move variable specifications into validated data or introduce a justified adapter/plugin boundary; do not invent extension points for hypothetical futures.
+- Working implementations may be refactored or replaced when better boundaries become clear. Protect observable contracts and migration paths while allowing internal designs to evolve.
+- For the motivation and review questions, see [adaptability and modularity](docs/ADAPTABILITY.md).
+
 ## Reassess architecture when extending features
 - Before materially expanding an existing feature, evaluate whether its current responsibilities, abstractions, ownership boundaries, and dependencies still fit the new requirements.
 - Look for concrete change pressure: accumulating unrelated responsibilities, duplicated logic, tangled dependencies, proliferating special cases, or incompatible persistence/consistency needs.
