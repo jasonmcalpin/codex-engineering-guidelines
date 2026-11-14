@@ -71,7 +71,7 @@ git diff -- .agents/skills
 
 Run this inside a Git repository; when files are first added and untracked, also use `git status --short` to see them. The command refreshes **only** the five named shared skills. Review any local modifications in those skill directories before running it, as those directories are replaced. It does not modify root `AGENTS.md` or unrelated local skill directories.
 
-For a permanent project command, commit a refresh script such as [ArcanAI's update script](https://github.com/jasonmcalpin/ArcanAI/blob/chore/install-codex-guidance/scripts/update-codex-skills.sh) or adapt the commands above into the destination's existing tooling. The link is an implementation example, **not** an authority for the skill contents; this repository remains the source. Document the refresh command in the destination README or engineering-guidance documentation.
+For a permanent project command, commit a refresh script such as [ArcanAI's update script](https://github.com/jasonmcalpin/ArcanAI/blob/51dd5c51bef8e8b50609858eafcdb6855b06e110/scripts/update-codex-skills.sh) or adapt the commands above into the destination's existing tooling. The link is an implementation example, **not** an authority for the skill contents; this repository remains the source. Document the refresh command in the destination README or engineering-guidance documentation.
 
 ### Root instructions and precedence
 
