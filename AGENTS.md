@@ -23,12 +23,27 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Avoid replacing one hard-coded blob with a registry of hard-coded blobs. Prefer declarative structures with explicit schemas and finite interpreter primitives over model-, vendor-, or case-specific branches.
 - When data currently lives in code and the requested change materially extends or duplicates it, treat extraction to an appropriate data boundary as part of maintaining conceptual integrity, unless a documented constraint requires otherwise.
 
+## Design for adaptability, not permanence
+- Treat requirements and implementation decisions as revisable. Favor cohesive modules with explicit ownership and narrow contracts so changing one subsystem does not force unrelated changes.
+- Evaluate modularity by independence of decisions and replacement cost, not number of files, interfaces, or packages. Avoid consumers depending on another module's private details.
+- Where concrete variants repeatedly change core logic, move variable specifications into validated data or introduce a justified adapter/plugin boundary; do not invent extension points for hypothetical futures.
+- Working implementations may be refactored or replaced when better boundaries become clear. Protect observable contracts and migration paths while allowing internal designs to evolve.
+- For the motivation and review questions, see [adaptability and modularity](docs/ADAPTABILITY.md).
+
 ## Reassess architecture when extending features
 - Before materially expanding an existing feature, evaluate whether its current responsibilities, abstractions, ownership boundaries, and dependencies still fit the new requirements.
 - Look for concrete change pressure: accumulating unrelated responsibilities, duplicated logic, tangled dependencies, proliferating special cases, or incompatible persistence/consistency needs.
 - If the current design remains coherent, extend it without ceremony. If it does not, include a bounded structural change in the feature work rather than stacking new behavior onto a mismatched abstraction.
 - Separate behavior-preserving restructuring from intentionally changed behavior in the plan, review, and tests. Respect existing contracts unless the task explicitly authorizes a change.
 - Do not refactor merely because a feature was initially simple or might grow someday.
+
+## Organize code by responsibility
+- For every major revision, new feature, or substantial feature extension, inspect the affected directory and module structure before implementation and review its architectural integrity before completion.
+- Place new code, functions, components, tests, and assets according to cohesive feature/domain ownership and clear responsibilities. A generic source directory is a root, not a substitute for meaningful organization.
+- Avoid unrelated responsibilities in the same module, oversized files, duplicated logic, and new cross-boundary dependencies. Prefer existing coherent homes; introduce directories or modules when ownership and navigability justify them, not to satisfy arbitrary size thresholds.
+- Keep substantial structured content, catalogs, prompts, tool formats, and configuration in appropriate data/configuration files or persistence stores rather than embedding them in executable code; keep types, validation, and loading contracts in code.
+- Existing layout is evidence, not authority: preserve intentional conventions, but do not perpetuate accidental disorganization. Refactor only when justified by the change and keep restructuring bounded.
+- Before completion, confirm the affected architecture is at least as coherent and maintainable as before. State any necessary structural changes or deferred issues; do not claim automated enforcement where none exists.
 
 ## Control scope while preserving dependencies
 - Every changed artifact must trace to the goal or a necessary dependency.
