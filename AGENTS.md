@@ -54,6 +54,13 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Remove code made obsolete by your change; report unrelated pre-existing issues separately.
 - Never silently break observable behavior or compatibility.
 
+## Engineer standards-first interoperability
+- Before building or materially changing an integration with an established protocol, API, framework, service, tool ecosystem, or machine-consumable interface, inspect applicable specifications, official documentation, SDK behavior, supported versions, and representative consumers. Do not assume remembered conventions are current.
+- Distinguish required protocol behavior, recommended ecosystem conventions, optional capabilities, and project-specific policy. Implement the complete applicable contract; evaluate optional features against real consumers and requirements rather than implementing them indiscriminately.
+- Design for consumer discoverability, invocation, interpretation, and operational compatibility, including metadata, schemas, lifecycle, errors, auth, versioning, retries, idempotency, pagination, resource bounds, and recovery where applicable. Prefer established patterns to custom mechanisms; justify deviations.
+- Maintain authoritative interface contracts and verify consumer-visible behavior with applicable conformance, contract, and representative-client integration tests. Passing unit tests or successfully exchanging requests alone does not establish interoperability.
+- Document deliberate deviations, compatibility consequences, and unverified client profiles. For design and review criteria, see [standards-first interoperability](docs/STANDARDS_FIRST_INTEROPERABILITY.md).
+
 ## Engineer complete agent-facing interfaces
 - Treat MCP servers, agent tools, and other machine-consumable integrations as discoverable protocol contracts, not just callable handlers. Review the applicable protocol specification, SDK behavior, and supported clients before implementing or materially changing an integration.
 - Distinguish protocol requirements from recommendations and project policy. Supply server orientation where supported, clear tool purposes and selection guidance, semantic parameter descriptions, accurate annotations, explicit result contracts, and actionable error behavior.
