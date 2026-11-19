@@ -54,6 +54,14 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Remove code made obsolete by your change; report unrelated pre-existing issues separately.
 - Never silently break observable behavior or compatibility.
 
+## Engineer complete agent-facing interfaces
+- Treat MCP servers, agent tools, and other machine-consumable integrations as discoverable protocol contracts, not just callable handlers. Review the applicable protocol specification, SDK behavior, and supported clients before implementing or materially changing an integration.
+- Distinguish protocol requirements from recommendations and project policy. Supply server orientation where supported, clear tool purposes and selection guidance, semantic parameter descriptions, accurate annotations, explicit result contracts, and actionable error behavior.
+- Ensure every supported consumer can access the information required to use a tool. For MCP, do not assume clients expose `structuredContent`; provide meaningful interoperable text content alongside structured results where appropriate, without silently truncating required data.
+- Keep interface metadata in one authoritative, versioned declarative source, consistent with existing schemas and runtime validation. Do not introduce parallel schema authorities or duplicate descriptive strings across registration and handlers.
+- Define acceptance checks for discovery, registration metadata, text-only and structured results, schema validation, errors, authorization, and compatibility. A successful tool invocation alone does not prove agent usability.
+- For MCP-specific design and review criteria, see [MCP interface contracts](docs/MCP_INTERFACE_CONTRACTS.md).
+
 ## Deliver verifiable outcomes
 - Define acceptance criteria before substantial implementation, including failure cases and compatibility where relevant.
 - When practical, reproduce bugs with a failing test before fixing them. Validate architecture through contract and integration evidence, not unit tests alone.
