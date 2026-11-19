@@ -10,8 +10,9 @@ Inspired by [Karpathy-Inspired Claude Code Guidelines](https://github.com/multic
 2. **Preserve conceptual integrity:** choose the simplest maintainable architecture satisfying real requirements, and reassess its fitness when feature responsibilities expand.
 3. **Control scope and dependencies:** avoid unrelated changes while updating every necessary consumer of a changed contract.
 4. **Standards-first interoperability:** implement applicable protocol contracts and ecosystem conventions; verify that real consumers can discover, invoke, and interpret integrations.
-5. **Deliver verifiable outcomes:** state acceptance criteria, run relevant checks, and distinguish proven results from unverified claims.
-6. **Design for adaptability:** isolate decisions that may change independently, keep boundaries replaceable when justified, and treat refactoring as normal engineering work.
+5. **Human-centered interfaces:** keep workflows, commands, naming, and repository organization intuitive without sacrificing explicit control.
+6. **Deliver verifiable outcomes:** state acceptance criteria, run relevant checks, and distinguish proven results from unverified claims.
+7. **Design for adaptability:** isolate decisions that may change independently, keep boundaries replaceable when justified, and treat refactoring as normal engineering work.
 
 
 These are instructions to the coding agent, not an enforcement mechanism.
@@ -92,7 +93,7 @@ Skills are optional, task-specific guidance. They do not replace project archite
 
 ## Design and provenance
 
-See [standards-first interoperability](docs/STANDARDS_FIRST_INTEROPERABILITY.md), [MCP interface contracts](docs/MCP_INTERFACE_CONTRACTS.md), [adaptability and modularity](docs/ADAPTABILITY.md), [design rationale](docs/DESIGN.md), [task examples](docs/EXAMPLES.md), [requirements-review acceptance cases](docs/REQUIREMENTS_REVIEW_CASES.md), and [attribution](ATTRIBUTION.md).
+See [human-centered interfaces](docs/HUMAN_CENTERED_INTERFACES.md), [standards-first interoperability](docs/STANDARDS_FIRST_INTEROPERABILITY.md), [MCP interface contracts](docs/MCP_INTERFACE_CONTRACTS.md), [adaptability and modularity](docs/ADAPTABILITY.md), [design rationale](docs/DESIGN.md), [task examples](docs/EXAMPLES.md), [requirements-review acceptance cases](docs/REQUIREMENTS_REVIEW_CASES.md), and [attribution](ATTRIBUTION.md).
 
 Key departure from the original inspiration: this project explicitly prioritizes maintainable system architecture and dependency-aware contract changes over strictly minimizing changed lines or code size.
 
