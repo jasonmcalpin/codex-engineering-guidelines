@@ -54,6 +54,14 @@ Use these defaults unless a more specific repository instruction or explicit use
 - Remove code made obsolete by your change; report unrelated pre-existing issues separately.
 - Never silently break observable behavior or compatibility.
 
+## Engineer human-centered interfaces
+- Design project layouts, commands, configuration, documentation, logs, and workflows for the people operating and maintaining the system. Minimize unnecessary cognitive load while preserving correctness and explicit control.
+- Use concise, consistent domain language and predictable, responsibility-based folders. Prefer recognizable conventions to clever names, duplicated terminology, or needlessly deep navigation.
+- Make common tasks easy to discover and invoke with safe defaults and short, memorable commands; retain explicit options for advanced use. Do not silently infer ambiguous, privileged, destructive, or costly choices.
+- Keep configuration discoverable and avoid repeated flag-heavy invocation. Provide clear help, representative examples, useful progress/status, actionable errors, and recovery guidance where appropriate.
+- For substantial human-facing changes, review the complete workflow: what people must find, understand, remember, type, decide, inspect, and troubleshoot. Verify representative behavior when practical and distinguish review from user testing.
+- For detailed criteria, see [human-centered interfaces](docs/HUMAN_CENTERED_INTERFACES.md).
+
 ## Engineer standards-first interoperability
 - Before building or materially changing an integration with an established protocol, API, framework, service, tool ecosystem, or machine-consumable interface, inspect applicable specifications, official documentation, SDK behavior, supported versions, and representative consumers. Do not assume remembered conventions are current.
 - Distinguish required protocol behavior, recommended ecosystem conventions, optional capabilities, and project-specific policy. Implement the complete applicable contract; evaluate optional features against real consumers and requirements rather than implementing them indiscriminately.
