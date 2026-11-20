@@ -1,4 +1,6 @@
-# Engineering guidelines for Codex
+# Engineering guidelines for coding agents
+
+<!-- engineering-guidelines:begin -->
 
 Use these defaults unless a more specific repository instruction or explicit user requirement supersedes them. Apply effort proportional to risk.
 
@@ -90,3 +92,5 @@ Use these defaults unless a more specific repository instruction or explicit use
 - When blocked, identify the missing evidence instead of guessing.
 
 Project instructions define domain facts and commands. Task-specific skills supplement, not supersede, these defaults.
+
+<!-- engineering-guidelines:end -->
