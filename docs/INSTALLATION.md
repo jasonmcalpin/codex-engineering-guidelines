@@ -1,38 +1,42 @@
-# Install in Codex
+# Installation and consumption
 
-This repository is a template/source for guidance, **not** an automatically activated plugin. Installing one part does not install the other.
+The canonical guidance is `AGENTS.md`; canonical skills are `.agents/skills/<name>/SKILL.md`. Agent-specific files are discovery adapters, never independent rule copies. Project-specific rules belong outside the generated marked section and take precedence as project policy; verify the effective instruction hierarchy in each client.
 
-## Repository-local guidance
+## Codex
 
-Copy the root `AGENTS.md` into a target project's root and merge it with existing project-specific instructions. Keep domain contracts and project commands in that project's own instructions.
+Codex reads project `AGENTS.md` and discovers project skills under `.agents/skills/`. For personal defaults, merge (do not blindly overwrite) guidance into `~/.codex/AGENTS.md` and install skills in `~/.agents/skills/`. See [Codex documentation](https://developers.openai.com/codex/) and [OpenAI skill path reference](https://developers.openai.com/api/reference/cli).
 
-## Repository-local skills
+## Claude Code
 
-Copy desired folders from `.agents/skills/` into the target repository's `.agents/skills/`. Each skill's `SKILL.md` provides its discoverable `name` and `description`.
+For project use, create `CLAUDE.md` containing `@AGENTS.md` to import shared instructions rather than copying them. Expose shared skills with `ln -s ../.agents/skills .claude/skills` from the project root (create `.claude` first). For user-global use, place an equivalent import in `~/.claude/CLAUDE.md` pointing at the shared guidance file and link `~/.claude/skills` to the canonical skills directory. Claude Code documents project/user memory imports and `.claude/skills/` discovery in its [official documentation](https://code.claude.com/docs/en/memory) and [skills documentation](https://code.claude.com/docs/en/skills). Directory symlink traversal must be verified with the installed Claude Code version; do not assume it works solely from the directory path convention.
 
-## Personal installation
+## Recommended: pinned submodule for long-lived projects
 
-To reuse across local Codex projects, merge the general guidance into `~/.codex/AGENTS.md` and copy selected skill directories to `~/.agents/skills/`.
-
-Example on macOS/Linux, **from this repository's root** (review target files before overwriting):
+From the consumer root:
 
 ```sh
-mkdir -p ~/.codex ~/.agents/skills
-# First inspect/merge AGENTS.md with any existing ~/.codex/AGENTS.md.
-cp -R .agents/skills/. ~/.agents/skills/
+git submodule add https://github.com/jasonmcalpin/engineering-guidelines.git vendor/engineering-guidelines
+git submodule update --init
+mkdir -p .agents .claude
+ln -s ../vendor/engineering-guidelines/.agents/skills .agents/skills
+ln -s ../vendor/engineering-guidelines/.agents/skills .claude/skills
+printf '@AGENTS.md\n' > CLAUDE.md
+node vendor/engineering-guidelines/scripts/sync-into-project.mjs
+node vendor/engineering-guidelines/scripts/sync-into-project.mjs --check
 ```
 
-For Windows, use the corresponding paths beneath your home directory (for example `%USERPROFILE%\.codex\AGENTS.md` and `%USERPROFILE%\.agents\skills\`). Copying files does not require a service, but restart or begin a fresh Codex session if changes are not picked up.
+The consumer `AGENTS.md` must contain exactly one `<!-- engineering-guidelines:begin -->` and one `<!-- engineering-guidelines:end -->` marker, in that order. The sync command also initializes a missing consumer `AGENTS.md`. Never hand-edit the generated region. Keep project-specific architecture, commands, and policy outside it. The sync script rewrites relative `docs/X.md` links to `vendor/engineering-guidelines/docs/X.md`. Update the submodule pin in a reviewed PR and rerun the sync script; the pinned commit is the review gate.
 
-**Important:** Do not overwrite existing global guidance without reviewing precedence and conflicts. Install project-specific rules at project scope when they differ from global defaults.
+After cloning, run `git submodule update --init`. On Windows, enable Developer Mode or administrator privileges and `core.symlinks=true` before checkout; otherwise Git may materialize symlinks as plain text. Symlinked skill discovery is client/version-dependent: validate it in a fresh Codex and Claude Code session. If unsupported, use a documented local install/copy procedure as a compatibility fallback, while retaining the submodule as the sole upstream authority.
 
-## Validate installation
+## Validate
 
-1. Start a new Codex session in a sample repository.
-2. Ask which repository guidance applies, and request an architecture review or regression fix using a corresponding skill.
-3. Confirm the agent can find the skill and identifies acceptance criteria and verification evidence.
-4. For `requirements-review`, run a representative substantial request with explicit skill invocation, then try the same request without naming the skill in a fresh session. Record whether it was discovered and selected; do not assume automatic invocation from the response alone.
-5. Run the positive and negative controls in [requirements-review acceptance cases](REQUIREMENTS_REVIEW_CASES.md), withholding the expected findings until after the response. Record missing requirements, false positives, and whether required findings include observable acceptance criteria.
-6. Inspect an actual code diff; instructions influence behavior but cannot guarantee compliance.
+1. Confirm each agent loads the intended instructions and skills in a fresh session; test discovery explicitly and implicitly.
+2. Run `node vendor/engineering-guidelines/scripts/sync-into-project.mjs --check` in CI.
+3. Confirm project-specific rules outside the generated region are preserved and effective.
+4. Run representative positive and negative cases from [requirements-review acceptance cases](REQUIREMENTS_REVIEW_CASES.md).
+5. Review the resulting diff and actual behavior. Instructions influence agent behavior but cannot guarantee compliance.
 
-Consult [official Codex documentation](https://developers.openai.com/codex/) for evolving discovery and precedence rules.
+## Verification boundaries
+
+Codex `AGENTS.md` and skill locations are documented by OpenAI. Claude Code's `CLAUDE.md` imports and skill locations require validation against the current official docs before deployment; directory symlink traversal in both agents has not been integration-tested here. Global import paths must be adjusted to the actual installation location.
